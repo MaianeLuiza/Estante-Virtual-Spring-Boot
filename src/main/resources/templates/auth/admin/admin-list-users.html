@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+  <title>Estante Virtual</title>
+
+  <link rel="stylesheet" th:href="@{/bootstrap-4.0.0-dist/css/bootstrap.min.css}">
+  <script th:src="@{/jquery-3.6.0-dist/jquery-3.6.0.min.js}"></script>
+  <script th:src="@{/bootstrap-4.0.0-dist/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+  <div th:insert="fragments/public-nav :: nav"></div>
+  <div class="row">
+    <div class="col">
+      <h1>Lista de Usuários</h1>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Nascimento</th>
+            <th>E-mail</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${users.empty}">
+              <td colspan="2">Sem usuários</td>
+            </tr>
+            <tr th:each="user : ${users}">
+              <td><span th:text="${user.name}"> Nome </span></td>
+              <td><span th:text="${user.cpf}"> CPF </span></td>
+              <td><span th:text="${#dates.format(user.dateOfBirth, 'dd/MM/yyyy')}"> Nascimento </span></td>
+              <td><span th:text="${user.email}"> E-mail </span></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -34,4 +34,10 @@ public class UserController {
         attributes.addFlashAttribute("message", "Usuário salvo com sucesso!");
         return "redirect:/user/new";
     }
+
+    @RequestMapping("/admin/list")
+    public String listUsers(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "/auth/admin/admin-list-users";
+    }
 }
