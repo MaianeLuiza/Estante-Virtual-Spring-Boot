@@ -33,6 +33,15 @@
               <td><span th:text="${user.cpf}"> CPF </span></td>
               <td><span th:text="${#dates.format(user.dateOfBirth, 'dd/MM/yyyy')}"> Nascimento </span></td>
               <td><span th:text="${user.email}"> E-mail </span></td>
+
+              <td>
+                <a class="btn btn-outline-danger btn-sm"
+                  th:href="@{/user/admin/delete/{id}(id=${user.id})}"
+                  th:data-confirm-delete="|Gostaria de excluir ${user.name}?|"
+                  onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false;">
+                  Excluir
+                </a>
+              </td>
             </tr>
         </tbody>
       </table>
