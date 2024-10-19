@@ -84,6 +84,8 @@
                         </div>
                         <div class="col-sm-5">
                             <span class="message" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+
+                            <span class="message" th:if="${loginExists}" th:text="${loginExists}"></span>
                         </div>
                     </div>
 
