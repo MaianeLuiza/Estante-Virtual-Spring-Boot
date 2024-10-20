@@ -35,6 +35,12 @@
               <td><span th:text="${user.email}"> E-mail </span></td>
 
               <td>
+                <th:block th:each="ff: ${user.roles}">
+                    <span th:text="${ff.role}">Função</span>
+                </th:block>
+              </td>
+
+              <td>
                 <a class="btn btn-outline-danger btn-sm"
                   th:href="@{/user/admin/delete/{id}(id=${user.id})}"
                   th:data-confirm-delete="|Gostaria de excluir ${user.name}?|"
