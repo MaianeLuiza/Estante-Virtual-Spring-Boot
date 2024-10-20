@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Estante Virtual</title>
+
+  <link rel="stylesheet" th:href="@{/bootstrap-4.0.0-dist/css/bootstrap.min.css}">
+  <script th:src="@{/jquery-3.6.0-dist/jquery-3.6.0.min.js}"></script>
+  <script th:src="@{/bootstrap-4.0.0-dist/js/bootstrap.min.js}"></script>
+
+  <style>
+    .message {
+    color: red;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col">
+               <h2>Atribuir função</h2>
+            <form action="#" th:action="@{/user/editRole/{id}(id=${user.id})}"
+            th:object="${user}" method="post">
+
+              <div class="row mb-3">
+                <label class="col-sm-1 col-form-label">Nome:</label>
+                <div class="col-sm-5">
+                  <input class="form-control" type="text" th:field="*{name}" disabled>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-1 col-form-label">CPF:</label>
+                <div class="col-sm-5">
+                  <input class="form-control" type="text" th:field="*{cpf}" disabled>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-1 col-form-label">Nascimento::</label>
+                <div class="col-sm-5">
+                  <input class="form-control" type="text" th:field="*{dateOfBirth}" disabled>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-1 col-form-label">E-mail:</label>
+                <div class="col-sm-5">
+                  <input class="form-control" type="text" th:field="*{email}" disabled>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-1 col-form-label">Login:</label>
+                <div class="col-sm-5">
+                  <input class="form-control" type="text" th:field="*{login}" disabled>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                  <label class="col-sm-1 col-form-label">Funções</label>
+                  <div class="col=sm-2">
+                    <th:block th:each="ff : ${listRoles}">
+                        <div th:if="${#lists.contains(user.roles, ff)}" class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ffs" th:value="${ff.id}" checked/>
+                            <label class="form-check-label" th:text="${ff.role}"></label>
+                        </div>
+
+                      <div th:unless="${#lists.contains(user.roles, ff)}" class="form-check">
+                        <input class="form-check-input" type="checkbox" name="ffs" th:value="${ff.id}"/>
+                        <label class="form-check-label" th:text="${ff.role}"></label>
+                      </div>
+
+                    </th:block>
+                  </div>
+              </div>
+
+              <input class="btn btn-primary" type="submit" value="Alterar">
+            </form>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

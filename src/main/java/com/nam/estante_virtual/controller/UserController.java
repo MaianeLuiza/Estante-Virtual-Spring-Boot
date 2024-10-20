@@ -81,7 +81,7 @@ public class UserController {
         return "auth/user/user-edit-user";
     }
 
-    @PostMapping("edit/{id}")
+    @PostMapping("/edit/{id}")
     public String editUser(@PathVariable("id") long id, @Valid User user, BindingResult result){
         if (result.hasErrors()) {
             user.setId(id);
@@ -89,6 +89,20 @@ public class UserController {
         }
         userRepository.save(user);
         return "redirect:/user/admin/list";
+    }
+
+    @GetMapping("/editRole/{id}")
+    public String selectRole(@PathVariable("id") long id, Model model){
+        Optional<User> userOld = userRepository.findById(id);
+        if (!userOld.isPresent()){
+            throw new IllegalArgumentException("Usuário inválido: " + id);
+        }
+        User user = userOld.get();
+        model.addAttribute("user", user);
+
+        model.addAttribute("listRoles", roleRepository.findAll());
+
+        return "/auth/admin/admin-edit-role-user";
     }
 
 }
