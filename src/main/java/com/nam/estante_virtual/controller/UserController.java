@@ -124,6 +124,7 @@ public class UserController {
             if (userOptional.isPresent()) {
                 User usr = userOptional.get();
                 usr.setRoles(roles);
+                usr.setActive(user.isActive());
                 userRepository.save(usr);
             }
         }
