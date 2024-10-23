@@ -12,4 +12,9 @@ public class HomeController {
         model.addAttribute("msnBemVindo", "Bem-vindo à Estante Virtual");
         return "publica-index";
     }
+
+    @RequestMapping("/login")
+    public String login(){
+       return "login";
+    }
 }
